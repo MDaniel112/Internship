@@ -1,3 +1,4 @@
+//arrow functions
 console.log("*****Arrow functions*****");
 let rotunjeste = nr => Math.round(nr);  
 
@@ -73,3 +74,59 @@ console.log(Math.trunc(420.07));
 console.log("*****Number Sign Determination*****");
 console.log(Math.sign(5));
 console.log(Math.sign(-5));
+
+//promise
+// console.log("*****Promise*****");
+
+// let promise = new Promise(function(resolve, reject) {
+//     setTimeout(() => resolve("Gata"), 1000);
+// });
+  
+// promise.then(
+//     result => console.log(result),
+//     error => console.log(error)
+// );
+
+//callback
+console.log("*****Callback*****");
+
+function salutare(nume){
+    console.log("Salut ", nume);
+}
+
+function procNume(callback){
+    let nume = "Daniel";
+    callback(nume);
+}
+procNume(salutare);
+
+//async
+console.log("*****Async*****");
+
+function rezolvaCuIntarziere() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+        resolve('Rezolvat');
+        }, 2000);
+    });
+}
+  
+async function asyncCall() {
+    console.log('Apelare');
+    const result = await rezolvaCuIntarziere();
+    console.log(result);
+}
+  
+// asyncCall();
+
+//closure
+console.log("*****Closure*****");
+function oras(){
+    let nume = "Braila";
+    function arataOras(){
+        console.log("Orasul ", nume);
+    }
+    arataOras();
+}
+
+oras();
