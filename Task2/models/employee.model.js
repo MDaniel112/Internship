@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         hire_date: {type: Sequelize.DATE},
         salary: {type: Sequelize.INTEGER},
         job_title: {type: Sequelize.STRING},
-
+        project_id: {type: Sequelize.INTEGER}
         
     }, {
         timestamps: false,

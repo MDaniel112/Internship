@@ -1,5 +1,7 @@
+const { projects } = require("../models");
 const db = require("../models");
 const Employee = db.employees;
+const Project = db.projects;
 
 exports.create = (req, res) => {
     if(!req.body.name) {
@@ -15,7 +17,8 @@ exports.create = (req, res) => {
         email: req.body.email,
         hire_date: req.body.hire_date,
         salary: req.body.salary,
-        job_title: req.body.job_title
+        job_title: req.body.job_title,
+        project_id: req.body.project_id
     }
 
     Employee.create(employee)
@@ -104,4 +107,4 @@ exports.delete = (req, res) => {
             message: "Nu se poate sterge angajatul cu id=" + id
         });
         });
-  };
+};

@@ -20,5 +20,8 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.employees = require("./employee.model.js")(sequelize, Sequelize);
+db.projects = require("./project.model.js")(sequelize, Sequelize);
+
+db.employees.belongsTo(db.projects, {targetKey:'id',foreignKey: 'project_id'});
 
 module.exports = db;
