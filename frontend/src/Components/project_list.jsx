@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import EditProjectModal from './edit_project_modal'
 
 class ProjectsList extends Component {
     constructor(props) {
@@ -21,6 +22,17 @@ class ProjectsList extends Component {
             })
     }
 
+    deleteProject(id){
+        Axios.delete("http://localhost:5000/projects/" + id)
+            .then(function (response) {
+                console.log(response);
+                window.location.reload();
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
     render() {
         const {projects} = this.state
         return (
@@ -34,8 +46,8 @@ class ProjectsList extends Component {
                         <td >{project.planned_end_date}</td>
                         <td >{project.description}</td>
                         <td >{project.project_code}</td>
-                        <td><Button>Edit</Button></td>
-                        <td><Button>Delete</Button></td>
+                        <td><EditProjectModal e_project={project}/></td>
+                        <td><Button onClick={() => this.deleteProject(project.id)}>Delete</Button></td>
                     </tr>
                     ) : null
                 }

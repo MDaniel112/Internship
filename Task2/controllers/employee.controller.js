@@ -99,7 +99,7 @@ exports.delete = (req, res) => {
             });
         } else {
             res.send({
-            message: `Nu se poate sterge angajatul cu id=${id}. Maybe Tutorial was not found!`
+            message: `Nu se poate sterge angajatul cu id=${id}.`
             });
         }
         })
