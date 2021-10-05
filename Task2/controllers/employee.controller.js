@@ -5,7 +5,7 @@ const Project = db.projects;
 
 exports.create = (req, res) => {
     if(!req.body.name) {
-        req.status(400).send({
+        res.status(400).send({
             message: "Continutul nu poate fi gol!"
         });
         return;
@@ -20,6 +20,7 @@ exports.create = (req, res) => {
         job_title: req.body.job_title,
         project_id: req.body.project_id
     }
+    console.log(employee);
 
     Employee.create(employee)
         .then(data => {
