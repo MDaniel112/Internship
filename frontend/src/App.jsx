@@ -18,8 +18,3 @@ function App() {
 }
 
 export default App;
-
-{/* <div>
-      <Navigatie />
-      <TabelEmployees />
-    </div> */}

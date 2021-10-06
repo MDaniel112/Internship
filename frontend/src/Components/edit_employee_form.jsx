@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Axios from 'axios';
 import FormData from 'form-data';
+import ProjectSelection from './project_selection';
 
 function EditEmployeeForm(props) {
     const [validated, setValidated] = useState(false);
@@ -68,7 +69,7 @@ function EditEmployeeForm(props) {
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Salary</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Salary" name="salary" defaultValue={props.salary}/>
+                <Form.Control required type="number" placeholder="Enter Salary" name="salary" defaultValue={props.salary}/>
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Job Title</Form.Label>
@@ -76,7 +77,8 @@ function EditEmployeeForm(props) {
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Project id</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Project Id" name="p_id" defaultValue={props.project_id}/>
+                {/* <Form.Control required type="text" placeholder="Enter Project Id" name="p_id" defaultValue={props.project_id}/> */}
+                <ProjectSelection />
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import EditProjectModal from './edit_project_modal'
+import ErrorModal from './error_modal';
+import { render } from '@testing-library/react';
 
 class ProjectsList extends Component {
     constructor(props) {
@@ -9,6 +11,7 @@ class ProjectsList extends Component {
         this.state = {
             projects: []
         }
+        this.showModal = false
     }
 
     componentDidMount(){
@@ -30,12 +33,15 @@ class ProjectsList extends Component {
             })
             .catch(function (error) {
                 console.log(error);
-            })
+                render(<ErrorModal errorText = "Eraore la stergerea proiectului!"/>)
+            });
     }
 
     render() {
         const {projects} = this.state
         return (
+            <>
+            
             <tbody>
                 {
                     projects.length ? projects.map(project => 
@@ -52,6 +58,7 @@ class ProjectsList extends Component {
                     ) : null
                 }
             </tbody>
+            </>
         )
     }
 }

@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Axios from 'axios';
 import FormData from 'form-data';
+import ProjectSelection from './project_selection';
 
 function EmployeeForm() {
     const [validated, setValidated] = useState(false);
@@ -75,7 +76,8 @@ function EmployeeForm() {
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Project id</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Project Id"name="p_id"/>
+                {/* <Form.Control required type="text" placeholder="Enter Project Id"name="p_id"/> */}
+                <ProjectSelection />
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
