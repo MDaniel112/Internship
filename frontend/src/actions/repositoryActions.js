@@ -29,13 +29,21 @@ const postDataSuccess = (response) => {
 }
 export const postData = (url, obj, props) => {
     return (dispatch) => {
-        Axios.post(url, obj)
-        .then(response => {
-            dispatch(postDataSuccess(response));
-        })
-        .catch(error => {
-            console.log(error)
-        })
+        Axios({
+                method: "post",
+                url: url,
+                data: obj,
+                headers: {"Content-type": "application/json"},
+            })
+                .then(response => dispatch(postDataSuccess(response)))
+                .catch(error => console.log(error));
+        // Axios.post(url, obj)
+        // .then(response => {
+        //     dispatch(postDataSuccess(response));
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
     }
 }
 const putDataSuccess = (response) => {

@@ -78,7 +78,7 @@ function EditEmployeeForm(props) {
             <Form.Group className="mb-3">
                 <Form.Label>Project id</Form.Label>
                 {/* <Form.Control required type="text" placeholder="Enter Project Id" name="p_id" defaultValue={props.project_id}/> */}
-                <ProjectSelection />
+                <ProjectSelection current_id={props.project_id}/>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit

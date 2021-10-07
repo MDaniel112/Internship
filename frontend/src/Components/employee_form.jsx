@@ -5,7 +5,10 @@ import Axios from 'axios';
 import FormData from 'form-data';
 import ProjectSelection from './project_selection';
 
-function EmployeeForm() {
+import { connect } from 'react-redux';
+import * as repositoryActions from '../actions/repositoryActions';
+
+function EmployeeForm(props) {
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event) => {
@@ -32,15 +35,17 @@ function EmployeeForm() {
             
             // var json = JSON.stringify(Object.fromEntries(bodyFormData));
 
-            Axios({
-                method: "post",
-                url: "http://localhost:5000/",
-                data: json,
-                headers: {"Content-type": "application/json"},
-            })
-                .then(response => console.log(response))
-                .catch(error => console.log(error));
+            // Axios({
+            //     method: "post",
+            //     url: "http://localhost:5000/",
+            //     data: json,
+            //     headers: {"Content-type": "application/json"},
+            // })
+            //     .then(response => console.log(response))
+            //     .catch(error => console.log(error));
             // Axios.post("http://localhost:5000",{bodyFormData}).then(response => console.log(response)).catch(error => console.log(error));
+            let url = 'http://localhost:5000/';
+            props.onPostData(url, json, { ...props });
         }
 
         setValidated(true);
@@ -86,4 +91,14 @@ function EmployeeForm() {
     );
 }
 
-export default EmployeeForm;
+const mapStateToProps = (state) => {     
+    return {  
+       data: state.data     
+    } 
+}
+const mapDispatchToProps = (dispatch) => {
+     return {
+         onPostData: (url, obj ,props) => dispatch(repositoryActions.postData(url, obj, props))
+    } 
+} 
+export default connect(mapStateToProps, mapDispatchToProps)(EmployeeForm);

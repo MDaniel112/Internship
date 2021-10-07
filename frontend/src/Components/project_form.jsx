@@ -4,7 +4,10 @@ import Button from 'react-bootstrap/Button'
 import Axios from 'axios';
 import FormData from 'form-data';
 
-function ProjectForm() {
+import { connect } from 'react-redux';
+import * as repositoryActions from '../actions/repositoryActions';
+
+function ProjectForm(props) {
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = (event) => {
@@ -29,15 +32,20 @@ function ProjectForm() {
             
             // var json = JSON.stringify(Object.fromEntries(bodyFormData));
 
-            Axios({
-                method: "post",
-                url: "http://localhost:5000/projects",
-                data: json,
-                headers: {"Content-type": "application/json"},
-            })
-                .then(response => console.log(response))
-                .catch(error => console.log(error));
+            // Axios({
+            //     method: "post",
+            //     url: "http://localhost:5000/projects",
+            //     data: json,
+            //     headers: {"Content-type": "application/json"},
+            // })
+            //     .then(response => console.log(response))
+            //     .catch(error => console.log(error));
             // Axios.post("http://localhost:5000",{bodyFormData}).then(response => console.log(response)).catch(error => console.log(error));
+
+            let url = 'http://localhost:5000/projects/';
+            props.onPostData(url, json, { ...props });
+            
+
         }
 
         setValidated(true);
@@ -74,4 +82,14 @@ function ProjectForm() {
     );
 }
 
-export default ProjectForm;
+const mapStateToProps = (state) => {     
+    return {  
+       data: state.data     
+    } 
+}
+const mapDispatchToProps = (dispatch) => {
+     return {
+         onPostData: (url, obj ,props) => dispatch(repositoryActions.postData(url, obj, props))
+    } 
+} 
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectForm);
