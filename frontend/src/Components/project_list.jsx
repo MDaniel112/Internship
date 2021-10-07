@@ -5,6 +5,9 @@ import EditProjectModal from './edit_project_modal'
 import ErrorModal from './error_modal';
 import { render } from '@testing-library/react';
 
+import { connect } from 'react-redux';
+import * as repositoryActions from '../actions/repositoryActions';
+
 class ProjectsList extends Component {
     constructor(props) {
         super(props)
@@ -14,31 +17,45 @@ class ProjectsList extends Component {
         this.showModal = false
     }
 
+    // componentDidMount(){
+    //     Axios.get('http://localhost:5000/projects')
+    //         .then(response => {
+    //             console.log(response)
+    //             this.setState({projects: response.data})
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
+
     componentDidMount(){
-        Axios.get('http://localhost:5000/projects')
-            .then(response => {
-                console.log(response)
-                this.setState({projects: response.data})
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        // this.setState = getData("http://localhost:5000/", this.props);
+        let url = 'http://localhost:5000/projects';
+        this.props.onGetData(url, { ...this.props });
     }
 
+    // deleteProject(id){
+    //     Axios.delete("http://localhost:5000/projects/" + id)
+    //         .then(function (response) {
+    //             console.log(response);
+    //             window.location.reload();
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //             render(<ErrorModal errorText = "Eroare la stergerea proiectului!"/>)
+    //         });
+    // }
+
     deleteProject(id){
-        Axios.delete("http://localhost:5000/projects/" + id)
-            .then(function (response) {
-                console.log(response);
-                window.location.reload();
-            })
-            .catch(function (error) {
-                console.log(error);
-                render(<ErrorModal errorText = "Eraore la stergerea proiectului!"/>)
-            });
+        let url = 'http://localhost:5000/projects/' + id;
+        this.props.onDeleteData(url, { ...this.props });
+        // this.setState(this.state);
+        window.location.reload();
     }
 
     render() {
-        const {projects} = this.state
+        // const {projects} = this.state
+        const projects = this.props.data
         return (
             <>
             
@@ -63,4 +80,17 @@ class ProjectsList extends Component {
     }
 }
 
-export default ProjectsList;
+const mapStateToProps = (state) => {     
+    return {  
+       data: state.data     
+    } 
+}
+const mapDispatchToProps = (dispatch) => {
+     return {
+         onGetData: (url, props) => dispatch(repositoryActions.getData(url, props)), 
+         onDeleteData: (url, props) => dispatch(repositoryActions.deleteData(url, props))    
+    } 
+} 
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList);
+
+// export default ProjectsList;
