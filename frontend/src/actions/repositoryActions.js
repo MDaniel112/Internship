@@ -54,13 +54,21 @@ const putDataSuccess = (response) => {
 }
 export const putData = (url, obj, props) => {
     return (dispatch) => {
-        Axios.put(url, obj)
-        .then(response => {
-            dispatch(putDataSuccess(response));
+        Axios({
+            method: "put",
+            url: url,
+            data: obj,
+            headers: {"Content-type": "application/json"},
         })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(response => dispatch(putDataSuccess(response)))
+            .catch(error => console.log(error));
+        // Axios.put(url, obj)
+        // .then(response => {
+        //     dispatch(putDataSuccess(response));
+        // })
+        // .catch(error => {
+        //     console.log(error)
+        // })
     }
 }
 const deleteDataSuccess = (response) => {
