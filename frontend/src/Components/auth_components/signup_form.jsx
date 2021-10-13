@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import FormData from 'form-data';
+// import { Link } from "react-router-dom";
 
 import { connect } from 'react-redux';
 import * as repositoryActions from '../../actions/repositoryActions';
+
 
 function SignUpForm(props) {
     const [validated, setValidated] = useState(false);
@@ -16,7 +18,7 @@ function SignUpForm(props) {
         event.stopPropagation();
         }
         else {
-            // event.preventDefault();
+            event.preventDefault();
             let bodyFormData = new FormData();
             bodyFormData.append('username', event.target.username.value);
             bodyFormData.append('email', event.target.email.value);
@@ -28,7 +30,8 @@ function SignUpForm(props) {
             console.log(json);
             
             let url = 'http://localhost:5000/auth/signup';
-            props.onPostData(url, json, { ...props });
+            props.onPostUserRegisterData(url, json, { ...props });
+            
         }
 
         setValidated(true);
@@ -64,7 +67,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
      return {
-         onPostData: (url, obj ,props) => dispatch(repositoryActions.postData(url, obj, props))
+         onPostUserRegisterData: (url, obj ,props) => dispatch(repositoryActions.postUserRegisterData(url, obj, props))
     } 
 } 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

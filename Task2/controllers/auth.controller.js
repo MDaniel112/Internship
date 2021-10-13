@@ -6,6 +6,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+    console.log("in signup")
     if(!req.body.username) {
         res.status(400).send({
             message: "Continutul nu poate fi gol!"

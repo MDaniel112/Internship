@@ -11,7 +11,6 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
       return res.status(400).send({
         message: "Numele este deja folosit!"
       });
-      return;
     }
 
     User.findOne({
@@ -23,7 +22,6 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
         return res.status(400).send({
           message: "Email-ul este deja folosit"
         });
-        return;
       }
 
       next();

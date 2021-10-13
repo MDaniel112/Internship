@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Axios from 'axios';
+// import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import EditProjectModal from './edit_project_modal'
-import ErrorModal from '../error_modal';
-import { render } from '@testing-library/react';
+// import ErrorModal from '../error_modal';
+// import { render } from '@testing-library/react';
 
 import { connect } from 'react-redux';
 import * as repositoryActions from '../../actions/repositoryActions';

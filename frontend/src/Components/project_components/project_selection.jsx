@@ -12,7 +12,7 @@ class ProjectSelection extends Component {
     }
 
     componentDidMount(){
-        Axios.get('http://localhost:5000/projects')
+        Axios.get('http://localhost:5000/projects', {headers: {'x-access-token': sessionStorage.getItem('accessToken')}})
             .then(response => {
                 console.log(response)
                 this.setState({projects: response.data})
@@ -43,5 +43,3 @@ class ProjectSelection extends Component {
 
 
 export default ProjectSelection;
-
-{/* <option key="DEFAULT" value={result.id}>id={result.id}, {result.project_name}</option> */}

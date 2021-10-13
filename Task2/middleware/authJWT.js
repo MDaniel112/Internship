@@ -14,7 +14,7 @@ verifyToken = (req, res, next) => {
 
     jwt.verify(token, config.secret, (err, decoded) => {
         if(err){
-            return res.send.status(401).send({
+            return res.status(401).send({
                 message: "Neatorizat"
             });
         }

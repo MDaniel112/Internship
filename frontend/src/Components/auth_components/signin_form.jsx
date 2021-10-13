@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+// import Axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import FormData from 'form-data';
@@ -27,17 +27,18 @@ function SignInForm(props) {
             var json = JSON.stringify(object);
             console.log(json);
             
-            Axios({
-                method: "post",
-                url: "http://localhost:5000/auth/signin",
-                data: json,
-                headers: {"Content-type": "application/json"},
-            })
-                .then(response => console.log(response.data.accessToken))
-                .catch(error => alert('Username sau parola invalide!'));
+            // Axios({
+            //     method: "post",
+            //     url: "http://localhost:5000/auth/signin",
+            //     data: json,
+            //     headers: {"Content-type": "application/json"},
+            // })
+            //     .then(response => {console.log(response.data.accessToken); window.location.href("/employees")})
+            //     .catch(error => {alert('Username sau parola invalide!');});
 
-            // let url = 'http://localhost:5000/auth/signin';
-            // props.onPostData(url, json, { ...props });
+            let url = 'http://localhost:5000/auth/signin';
+            props.onPostUserLoginData(url, json, { ...props });
+            console.log(props);
         }
 
         setValidated(true);
@@ -69,7 +70,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
      return {
-         onPostData: (url, obj ,props) => dispatch(repositoryActions.postData(url, obj, props))
+         onPostUserLoginData: (url, obj ,props) => dispatch(repositoryActions.postUserLoginData(url, obj, props))
     } 
 } 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);

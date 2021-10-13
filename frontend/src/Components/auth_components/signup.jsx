@@ -1,4 +1,3 @@
-import react from 'react';
 import {Row, Col} from 'react-bootstrap';
 import SignUpForm from './signup_form';
 
@@ -8,6 +7,7 @@ function SignUp(){
             <Col></Col>
             <Col>
                 <SignUpForm />
+                <a href="/signin">Sign In</a>
             </Col>
             <Col></Col>
         </Row>
