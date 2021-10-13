@@ -8,6 +8,7 @@ class ProjectSelection extends Component {
         this.state = {
             projects: []
         }
+        this.result = {}
     }
 
     componentDidMount(){
@@ -23,22 +24,24 @@ class ProjectSelection extends Component {
 
     render() {
         const {projects} = this.state
+        
         return(
             <Form.Select name="p_id">
-                
                 {
                     projects.length ? projects.map(project =>
                         <option key={project.id} value={project.id}>id={project.id}, {project.project_name}</option>
                     ) : null
+                    
                 }
                 
             </Form.Select>
+            
         );
     }
+        
 }
+
 
 export default ProjectSelection;
 
-// value={this.current_id} onChange={(event)=>this.cbChangedHandler(event)}
-
-{/* <option value="DEFAULT" disabled>{this.props.current_id}</option> */}
+{/* <option key="DEFAULT" value={result.id}>id={result.id}, {result.project_name}</option> */}

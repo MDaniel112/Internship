@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import EditEmployeeModal from './edit_employee_modal';
 
 import { connect } from 'react-redux';
-import * as repositoryActions from '../actions/repositoryActions';
+import * as repositoryActions from '../../actions/repositoryActions';
 
 
 class EmployeesList extends Component {

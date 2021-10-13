@@ -4,7 +4,7 @@ import EmployeeForm from "./employee_form";
 
 function EmployeeModal() {
     const [show, setShow] = useState(false);
-  
+   console.log(this);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   

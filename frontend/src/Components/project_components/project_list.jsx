@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import EditProjectModal from './edit_project_modal'
-import ErrorModal from './error_modal';
+import ErrorModal from '../error_modal';
 import { render } from '@testing-library/react';
 
 import { connect } from 'react-redux';
-import * as repositoryActions from '../actions/repositoryActions';
+import * as repositoryActions from '../../actions/repositoryActions';
 
 class ProjectsList extends Component {
     constructor(props) {
@@ -50,7 +50,6 @@ class ProjectsList extends Component {
         let url = 'http://localhost:5000/projects/' + id;
         this.props.onDeleteData(url, { ...this.props });
         // this.setState(this.state);
-        window.location.reload();
     }
 
     render() {

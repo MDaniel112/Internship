@@ -5,7 +5,7 @@ import Axios from 'axios';
 import FormData from 'form-data';
 
 import { connect } from 'react-redux';
-import * as repositoryActions from '../actions/repositoryActions';
+import * as repositoryActions from '../../actions/repositoryActions';
 
 function ProjectForm(props) {
     const [validated, setValidated] = useState(false);
@@ -33,19 +33,16 @@ function ProjectForm(props) {
             // var json = JSON.stringify(Object.fromEntries(bodyFormData));
 
             // Axios({
-            //     method: "post",
-            //     url: "http://localhost:5000/projects",
+            //     method: "put",
+            //     url: "http://localhost:5000/projects/" + props.id,
             //     data: json,
             //     headers: {"Content-type": "application/json"},
             // })
             //     .then(response => console.log(response))
             //     .catch(error => console.log(error));
             // Axios.post("http://localhost:5000",{bodyFormData}).then(response => console.log(response)).catch(error => console.log(error));
-
-            let url = 'http://localhost:5000/projects/';
-            props.onPostData(url, json, { ...props });
-            
-
+            let url = 'http://localhost:5000/projects/' + props.id;
+            props.onPutData(url, json, { ...props });
         }
 
         setValidated(true);
@@ -57,23 +54,23 @@ function ProjectForm(props) {
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
                 <Form.Label>Project Name</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Project Name" name="project_name"/>
+                <Form.Control required type="text" placeholder="Enter Project Name" name="project_name" defaultValue={props.project_name}/>
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Start Date</Form.Label>
-                <Form.Control required type="date" placeholder="Enter Start Date" name="start_date"/>
+                <Form.Control required type="date" placeholder="Enter Start Date" name="start_date" defaultValue={props.start_date}/>
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Planned End Date</Form.Label>
-                <Form.Control required type="date" placeholder="Enter End Date" name="planned_end_date"/>
+                <Form.Control required type="date" placeholder="Enter End Date" name="planned_end_date" defaultValue={props.planned_end_date}/>
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Description</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Description" name="description"/>
+                <Form.Control required type="text" placeholder="Enter Description" name="description" defaultValue={props.description}/>
             </Form.Group>
             <Form.Group className="mb-3">
                 <Form.Label>Project Code</Form.Label>
-                <Form.Control required type="text" placeholder="Enter Project Code" name="project_code"/>
+                <Form.Control required type="text" placeholder="Enter Project Code" name="project_code" defaultValue={props.project_code}/>
             </Form.Group>
             <Button variant="primary" type="submit">
                 Submit
@@ -89,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
      return {
-         onPostData: (url, obj ,props) => dispatch(repositoryActions.postData(url, obj, props))
+         onPutData: (url, obj ,props) => dispatch(repositoryActions.putData(url, obj, props))
     } 
 } 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectForm);

@@ -19,6 +19,7 @@ const db = require("./models")
 db.sequelize.sync();
 
 require("./routes/employee.routes")(app);
+require("./routes/auth.routes")(app);
 
 const PORT = process.env.PORT || 5000;
 

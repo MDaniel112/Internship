@@ -82,10 +82,11 @@ export const deleteData = (url, props) => {
         Axios.delete(url)
         .then(response => {
             dispatch(deleteDataSuccess(response));
+            window.location.reload()
         })
         .catch(error => {
             console.log(error)
-            render(<ErrorModal errorText = "Eroare la stergerea proiectului!"/>)
+            render(<ErrorModal errorText = "Eroare la stergere!"/>)
         })
     }
 }
