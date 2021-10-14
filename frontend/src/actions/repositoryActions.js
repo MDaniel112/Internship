@@ -106,8 +106,13 @@ export const postUserRegisterData = (url, obj, props) => {
                 data: obj,
                 headers: {"Content-type": "application/json"},
             })
-                .then(response => {window.location.replace("/"); dispatch(postUserRegisterDataSuccess(response));})
-                .catch(error => console.log(error));
+                .then(response => {
+                    console.log(response.data.message)
+                    alert(response.data.message);
+                    window.location.replace("/"); 
+                    dispatch(postUserRegisterDataSuccess(response));
+                })
+                .catch(error => alert(error.response.data.message));
     }
 }
 
@@ -130,6 +135,7 @@ export const postUserLoginData = (url, obj, props) => {
                     sessionStorage.setItem('isLoggedIn', 'logged'); 
                     sessionStorage.setItem('username', response.data.username);
                     sessionStorage.setItem('accessToken', response.data.accessToken);
+                    sessionStorage.setItem('roles', response.data.roles);
                     console.log(sessionStorage.getItem("isLoggedIn")); 
                     window.location.replace("/");  })
                 .catch(error => alert('Username sau parola invalide!'));

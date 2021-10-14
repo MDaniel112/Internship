@@ -5,7 +5,7 @@ module.exports = function(app) {
 
     var router = require("express").Router();
 
-    router.post("/auth/signup", [verifySignUp.checkDuplicateUsernameOrEmail], users.signup);
+    router.post("/auth/signup", [verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.checkRolesExisted], users.signup);
 
     router.post("/auth/signin", users.signin);
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import Axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import EditEmployeeModal from './edit_employee_modal';
+import ProjectSelection from '../project_components/project_selection'
 
 import { connect } from 'react-redux';
 import * as repositoryActions from '../../actions/repositoryActions';
@@ -31,7 +32,7 @@ class EmployeesList extends Component {
 
     componentDidMount(){
         // this.setState = getData("http://localhost:5000/", this.props);
-        let url = 'http://localhost:5000/';
+        let url = 'http://localhost:5000/allEmpProjects';
         this.props.onGetData(url, { ...this.props });
     }
 
@@ -57,6 +58,11 @@ class EmployeesList extends Component {
         // console.log(this.props.data)
         const employees = this.props.data
         // console.log(employees)
+        let enabled = false;
+
+        if(sessionStorage.getItem('roles').search("ROLE_ADMIN") === -1) {
+        enabled = true;
+        }
         
         return (
             <tbody>
@@ -70,9 +76,9 @@ class EmployeesList extends Component {
                         <td >{employee.hire_date}</td>
                         <td >{employee.salary}</td>
                         <td >{employee.job_title}</td>
-                        <td >{employee.project_id}</td>
+                        <td >{employee.project.project_name}</td>
                         <td><EditEmployeeModal e_employee={employee}/></td>
-                        <td><Button onClick={() => this.deleteEmployee(employee.id)}>Delete</Button></td>
+                        <td><Button onClick={() => this.deleteEmployee(employee.id)} disabled={enabled}>Delete</Button></td>
                     </tr>
                     ) : null
                 }

@@ -4,13 +4,18 @@ import EmployeeForm from "./employee_form";
 
 function EmployeeModal() {
     const [show, setShow] = useState(false);
-   console.log(this);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    let enabled = false;
+
+    if(sessionStorage.getItem('roles').search("ROLE_ADMIN") === -1) {
+      enabled = true;
+    }
   
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="primary" onClick={handleShow} disabled={enabled}>
           Add employee
         </Button>
   

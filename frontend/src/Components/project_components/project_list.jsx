@@ -55,6 +55,11 @@ class ProjectsList extends Component {
     render() {
         // const {projects} = this.state
         const projects = this.props.data
+        let enabled = false;
+
+        if(sessionStorage.getItem('roles').search("ROLE_ADMIN") === -1) {
+        enabled = true;
+        }
         return (
             <>
             
@@ -69,7 +74,7 @@ class ProjectsList extends Component {
                         <td >{project.description}</td>
                         <td >{project.project_code}</td>
                         <td><EditProjectModal e_project={project}/></td>
-                        <td><Button onClick={() => this.deleteProject(project.id)}>Delete</Button></td>
+                        <td><Button onClick={() => this.deleteProject(project.id)} disabled={enabled}>Delete</Button></td>
                     </tr>
                     ) : null
                 }

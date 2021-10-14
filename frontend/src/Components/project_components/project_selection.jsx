@@ -29,7 +29,7 @@ class ProjectSelection extends Component {
             <Form.Select name="p_id">
                 {
                     projects.length ? projects.map(project =>
-                        <option key={project.id} value={project.id}>id={project.id}, {project.project_name}</option>
+                        <option key={project.id} value={project.id} selected={project.id == this.props.current_id}>id={project.id}, {project.project_name}</option>
                     ) : null
                     
                 }

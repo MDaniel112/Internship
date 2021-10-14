@@ -8,11 +8,16 @@ function EditEmployeeModal(props) {
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    console.log(props);
+    // console.log(props);
+    let enabled = false;
+
+    if(sessionStorage.getItem('roles').search("ROLE_ADMIN") === -1) {
+      enabled = true;
+    }
   
     return (
       <>
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="primary" onClick={handleShow} disabled={enabled}>
           Edit
         </Button>
   

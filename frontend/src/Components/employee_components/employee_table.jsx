@@ -19,7 +19,7 @@ function TabelEmployees() {
                         <th>Hire Date</th>
                         <th>Salary</th>
                         <th>Job Title</th>
-                        <th>Project Id</th>
+                        <th>Project</th>
                         <th>Edit</th>
                         <th>Delete</th>
                         </tr>

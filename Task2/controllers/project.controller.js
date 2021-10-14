@@ -122,3 +122,19 @@ exports.getProject = (req, res) => {
             });
         }); 
 }
+
+exports.getAllProjects = (req, res) => {
+    // const name = req.params.name;
+
+    Employee.findAll({ 
+        include: [{ model:Project }]
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Eroare la preluarea Angajatului pentru vizualizare proiect cu numele=" + name || err.message
+            });
+        }); 
+}
